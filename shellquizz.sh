@@ -7,6 +7,4 @@
 
 source shellquizz_lib.sh
 
-showReadmeDialog
-showHowtoDialog
-showAboutDialog
+retrieveQuizzInformations scifimovies.quizz

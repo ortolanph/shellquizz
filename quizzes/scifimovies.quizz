@@ -1,1 +1,5 @@
-Paulo Ortolan;paulo.ortolan@gmail.com;SCI-FI Movies Quizz;scifimovies.questions;scifimovies.about
+quizz.title=SCI-FI Movies Quizz
+quizz.author.name=Paulo Ortolan
+quizz.author.email=paulo.ortolan@gmail.com
+quizz.questions=scifimovies.questions
+quizz.about=scifimovies.about
