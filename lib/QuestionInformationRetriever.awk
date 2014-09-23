@@ -3,15 +3,15 @@ BEGIN {
 	FS=";";
 }
 {
-	if ( element == "title" ) {
+	if ( element == "question.title" ) {
 		print $1
 	}
 
-	if ( element == "options" ) {
+	if ( element == "question.options" ) {
 		print "\"" $2 "\" \"" $3 "\" \"" $4 "\" \"" $5 "\" \"" $6 "\""
 	}
 
-	if ( element = "answer" ) {
+	if ( element = "question.answer" ) {
 		print $7
 	}
 }
