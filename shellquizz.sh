@@ -11,8 +11,4 @@ retrieveQuizzInformations scifimovies.quizz
 
 retrieveQuestions
 
-for ((i=0; i < ${#array[*]}; i++))
-do
-    echo "[$i]"
-    retrieveQuestionInformation "${array[i]}"
-done
+
