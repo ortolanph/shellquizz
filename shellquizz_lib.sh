@@ -28,7 +28,6 @@ DEFAULT_WIDTH=600
 # The default title
 DEFAULT_TITLE="Shell Quizz"
 
-
 # Global Variables
 # Quizz file
 QUIZZ_FILE=$QUIZZ_DIR"/"
@@ -102,13 +101,6 @@ function showAboutDialog() {
     fi
 }
 
-# selectQuizz
-# Show a list of installed quizzes. When cancelled, the program will quit.
-# selectQuizz
-function selectQuizz() {
-    echo "Nothing"  
-}
-
 # listAllQuizzes
 # List all quizzes in a line.
 # listAllQuizzes
@@ -121,6 +113,13 @@ function listAllQuizzes() {
    done
 
    echo "["$QUIZZES"]"
+}
+
+# selectQuizz
+# Show a list of installed quizzes. When cancelled, the program will quit.
+# selectQuizz
+function selectQuizz() {
+    echo "Nothing"  
 }
 
 # retrieveQuizzInformations
@@ -199,4 +198,11 @@ function retrieveQuestionInformation() {
 # main
 function main() {
     echo "Main function"
+    showReadmeDialog
+    showHowtoDialog
+    selectQuizz
+    
+#    retrieveQuizzInformations
+#    retrieveQuestions
+#    retrieveQuestionInformation
 }
