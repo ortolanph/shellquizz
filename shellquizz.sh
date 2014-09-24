@@ -7,8 +7,4 @@
 
 source shellquizz_lib.sh
 
-retrieveQuizzInformations scifimovies.quizz
-
-retrieveQuestions
-
-
+main
