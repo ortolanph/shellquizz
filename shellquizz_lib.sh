@@ -81,9 +81,9 @@ function showHowtoDialog() {
 
     if [ $HOWTO -eq 1 ]
     then
-        echo "Read me dialog will be shown."
+        echo "How to dialog will be shown."
     else
-        echo "Read me dialog will not be shown."
+        echo "How to dialog will not be shown."
     fi
 }
 
@@ -95,9 +95,9 @@ function showAboutDialog() {
 
     if [ $ABOUT -eq 1 ]
     then
-        echo "Read me dialog will be shown."
+        echo "About dialog will be shown."
     else
-        echo "Read me dialog will not be shown."
+        echo "About dialog will not be shown."
     fi
 }
 
