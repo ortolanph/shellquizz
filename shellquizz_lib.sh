@@ -32,6 +32,8 @@ DEFAULT_TITLE="Shell Quizz"
 README_DOC=$PWD"/docs/README"
 # The howto document
 HOWTO_DOC=$PWD"/docs/HOWTO"
+# Select a quizz label
+SELECT_QUIZZ="Select a quizz"
 
 # Global Variables
 # Quizz file
@@ -50,7 +52,7 @@ QUIZZ_QUESTION=$QUIZZ_DIR"/"
 QUIZZ_QUESTIONS=()
 # The question title
 QUESTION_TITLE=""
-# The question options formatted as "#1" "#2" "#3" "#4" "#5"
+# The question options formatted as '"#1" "#2" "#3" "#4" "#5"'
 QUESTION_OPTIONS=""
 # The question answer
 QUESTION_ANSWER=""
@@ -124,9 +126,14 @@ function showAboutDialog() {
 
     if [ $ABOUT -eq 1 ]
     then
-        echo "About dialog will be shown."
-    else
-        echo "About dialog will not be shown."
+        zenity --text-info \
+               --title="$QUIZZ_TITLE" \
+               --height=$DEFAULT_HEIGHT \
+               --width=$DEFAULT_WIDTH \
+               --filename=$QUIZZ_ABOUT \
+               --html
+
+        checkDialogAction
     fi
 }
 
@@ -141,14 +148,23 @@ function listAllQuizzes() {
       QUIZZES=$QUIZZES$QUIZZ" "
    done
 
-   echo "["$QUIZZES"]"
+   echo $QUIZZES
 }
 
 # selectQuizz
 # Show a list of installed quizzes. When cancelled, the program will quit.
 # selectQuizz
 function selectQuizz() {
-    echo "Nothing"  
+    SELECTED_QUIZZ=$(zenity --list \
+                            --title="$DEFAULT_TITLE" \
+                            --height=$DEFAULT_HEIGHT \
+                            --width=$DEFAULT_WIDTH \
+                            --column="$SELECT_QUIZZ" \
+                            $( listAllQuizzes ) )
+
+    checkDialogAction
+    
+    echo $SELECTED_QUIZZ
 }
 
 # retrieveQuizzInformations
@@ -228,8 +244,9 @@ function retrieveQuestionInformation() {
 function main() {
     showReadmeDialog
     showHowtoDialog
-    selectQuizz
-    
+    retrieveQuizzInformations $( selectQuizz )
+    showAboutDialog
+
 #    retrieveQuizzInformations
 #    retrieveQuestions
 #    retrieveQuestionInformation
