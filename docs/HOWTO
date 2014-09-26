@@ -1,1 +1,14 @@
-This is the howto file.
+<!doctype html>
+<html>
+ <head>
+  <title>Shell Quizz - How to</title>
+ </head>
+ <body>
+  <h1>Shell Quizz</h1>
+  <h2>How to</h2>
+  <p>To create a quizz you need to follow the steps below:</p>
+  <ol>
+   <li>On <code>quizzes</code> folder, create a <code>.quizz</code> empty file</li>
+  </ol>
+ </body>
+</html>

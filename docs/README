@@ -1,1 +1,13 @@
-This is the README file
+<!doctype html>
+<html>
+ <head>
+  <title>Shell Quizz - Read me</title>
+ </head>
+ <body>
+  <h1>Shell Quizz</h1>
+  <h2>Readme</h2>
+  <p>To disable this screen, edit the configuration file <code>shellquizz.conf</code> and modify the variable <code>readme</code> to <code>0</code>.</p>
+  <p>Press "Cancel" to abort or "OK" to continue.</p>
+  <p><strong>Have fun!</p>
+ </body>
+</html>

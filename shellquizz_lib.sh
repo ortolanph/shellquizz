@@ -5,6 +5,7 @@
 # 23/09/2014 - Paulo Ortolan - Script creation
 # 23/09/2014 - Paulo Ortolan - Adding more functions
 # 24/09/2014 - Paulo Ortolan - New algorithm for retriving question informations
+# 26/09/2014 - Paulo Ortolan - Adding UI
 
 # Constants
 # Configuration file
@@ -22,11 +23,15 @@ H_QUIZZ_ABOUT="quizz.about"
 # Header for quizz question file
 H_QUIZZ_QUESTION="quizz.questions"
 # The default height
-DEFAULT_HEIGHT=500
+DEFAULT_HEIGHT=600
 # The default width
-DEFAULT_WIDTH=600
+DEFAULT_WIDTH=800
 # The default title
 DEFAULT_TITLE="Shell Quizz"
+# The readme document
+README_DOC=$PWD"/docs/README"
+# The howto document
+HOWTO_DOC=$PWD"/docs/HOWTO"
 
 # Global Variables
 # Quizz file
@@ -59,6 +64,20 @@ function retrieveInformation() {
     echo $(awk -f lib/InformationRetriever.awk < $1 -v key=$2)
 }
 
+# checkDialogAction
+# Checks the dialog action. If any error occurred or the user has cancelled the action, the system exits.
+# checkDialogAction
+function checkDialogAction() {
+    case $? in
+        1)
+	    exit
+            ;;
+        -1)
+            exit
+            ;;
+    esac
+}
+
 # showReadmeDialog
 # Shows the README file in the docs dir.
 # showReadmeDialog
@@ -67,9 +86,14 @@ function showReadmeDialog() {
 
     if [ $README -eq 1 ]
     then
-        echo "Read me dialog will be shown."
-    else
-        echo "Read me dialog will not be shown."
+        zenity --text-info \
+               --title="$DEFAULT_TITLE" \
+               --height=$DEFAULT_HEIGHT \
+               --width=$DEFAULT_WIDTH \
+               --filename=$README_DOC \
+               --html
+
+        checkDialogAction
     fi
 }
 
@@ -81,9 +105,14 @@ function showHowtoDialog() {
 
     if [ $HOWTO -eq 1 ]
     then
-        echo "How to dialog will be shown."
-    else
-        echo "How to dialog will not be shown."
+        zenity --text-info \
+               --title="$DEFAULT_TITLE" \
+               --height=$DEFAULT_HEIGHT \
+               --width=$DEFAULT_WIDTH \
+               --filename=$HOWTO_DOC \
+               --html
+
+        checkDialogAction
     fi
 }
 
@@ -197,7 +226,6 @@ function retrieveQuestionInformation() {
 # The main funcion.
 # main
 function main() {
-    echo "Main function"
     showReadmeDialog
     showHowtoDialog
     selectQuizz
