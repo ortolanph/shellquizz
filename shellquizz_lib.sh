@@ -72,7 +72,7 @@ function retrieveInformation() {
 function checkDialogAction() {
     case $? in
         1)
-	    exit
+            exit
             ;;
         -1)
             exit
