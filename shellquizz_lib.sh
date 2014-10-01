@@ -34,6 +34,10 @@ README_DOC=$PWD"/docs/README"
 HOWTO_DOC=$PWD"/docs/HOWTO"
 # Select a quizz label
 SELECT_QUIZZ="Select a quizz"
+# Select the correct answer label
+SELECT_QUIZZ="Select the correct answer"
+# Final result file
+FINAL_RESULT_FILE="result.html"
 
 # Global Variables
 # Quizz file
@@ -56,6 +60,12 @@ QUESTION_TITLE=""
 QUESTION_OPTIONS=""
 # The question answer
 QUESTION_ANSWER=""
+# Total Questions
+TOTAL_QUESTIONS=0
+# Total Correct
+TOTAL_CORRECT=0
+# Total Wrong
+TOTAL_WRONG=0
 
 # Functions
 
@@ -163,7 +173,7 @@ function selectQuizz() {
                             $( listAllQuizzes ) )
 
     checkDialogAction
-    
+   
     echo $SELECTED_QUIZZ
 }
 
@@ -172,6 +182,11 @@ function selectQuizz() {
 # retrieveQuizzInformations QUIZZ_FILE_NAME
 function retrieveQuizzInformations() {
     QUIZZ_FILE=$QUIZZ_DIR"/"$1
+
+    if [ -z $1 ]
+    then
+        exit
+    fi
 
     QUIZZ_TITLE=$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_TITLE )
     QUIZZ_AUTHOR=$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_AUTHOR )
@@ -184,14 +199,13 @@ function retrieveQuizzInformations() {
 # Retrieves the questions in the $QUIZ_QUESTION file.
 # retrieveQuestions
 function retrieveQuestions() {
-    q=0
-
     if [ -s $QUIZZ_QUESTION ]
     then
         while read QUESTION
         do
-            QUIZZ_QUESTIONS[q]=$QUESTION
-            q=$(($q + 1))
+            QUIZZ_QUESTIONS[$TOTAL_QUESTIONS]=$QUESTION
+
+            TOTAL_QUESTIONS=$(( $TOTAL_QUESTIONS + 1 ))
         done < $QUIZZ_QUESTION
     else
         exit
@@ -209,11 +223,11 @@ function retrieveQuestionTitle() {
 # Retrives the question options given a question line.
 # retrieveOptions LINE
 function retrieveOptions() {
-    OPTIONS="\"$( echo $1 | cut -d';' -f2)\" "
-    OPTIONS=$OPTIONS"\"$( echo $1 | cut -d';' -f3)\" "
-    OPTIONS=$OPTIONS"\"$( echo $1 | cut -d';' -f4)\" "
-    OPTIONS=$OPTIONS"\"$( echo $1 | cut -d';' -f5)\" "
-    OPTIONS=$OPTIONS"\"$( echo $1 | cut -d';' -f6)\""
+    OPTIONS="$( echo $1 | cut -d';' -f2) "
+    OPTIONS=$OPTIONS"$( echo $1 | cut -d';' -f3) "
+    OPTIONS=$OPTIONS"$( echo $1 | cut -d';' -f4) "
+    OPTIONS=$OPTIONS"$( echo $1 | cut -d';' -f5) "
+    OPTIONS=$OPTIONS"$( echo $1 | cut -d';' -f6)"
 
     echo $OPTIONS
 }
@@ -247,7 +261,28 @@ function main() {
     retrieveQuizzInformations $( selectQuizz )
     showAboutDialog
 
-#    retrieveQuizzInformations
-#    retrieveQuestions
-#    retrieveQuestionInformation
+    retrieveQuestions
+
+    for (( q=0 ; q<$TOTAL_QUESTIONS ; q++ ))
+    do
+        retrieveQuestionInformation "${QUIZZ_QUESTIONS[$q]}"
+
+        MY_ANSWER=$( zenity --list \
+                            --title="$QUESTION_TITLE" \
+                            --height=$DEFAULT_HEIGHT \
+                            --width=$DEFAULT_WIDTH \
+                            --column="$SELECT_CORRECT" \
+                            $QUESTION_OPTIONS )
+
+        checkDialogAction
+ 
+        if [ "$MY_ANSWER" == "$QUESTION_ANSWER" ]
+        then
+            TOTAL_CORRECT=$(( $TOTAL_CORRECT + 1 ))
+        else
+            TOTAL_WRONG=$(( $TOTAL_WRONG + 1 ))
+        fi
+    done
+
+    echo "Total [$TOTAL_QUESTIONS] Correct [$TOTAL_CORRECT] Wrong [$TOTAL_WRONG]"
 }
