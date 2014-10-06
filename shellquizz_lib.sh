@@ -6,6 +6,8 @@
 # 23/09/2014 - Paulo Ortolan - Adding more functions
 # 24/09/2014 - Paulo Ortolan - New algorithm for retriving question informations
 # 26/09/2014 - Paulo Ortolan - Adding UI
+# 01/10/2014 - Paulo Ortolan - Algorithm for questions
+# 05/10/2014 - Paulo Ortolan - Result screen
 
 # Constants
 # Configuration file
@@ -41,7 +43,7 @@ FINAL_RESULT_FILE="result.html"
 
 # Global Variables
 # Quizz file
-QUIZZ_FILE=$QUIZZ_DIR"/"
+QUIZZ_FILE="$QUIZZ_DIR/"
 # Quizz title to be displayed on dialog titles
 QUIZZ_TITLE=""
 # Quizz author to be displayed on about screen
@@ -252,6 +254,25 @@ function retrieveQuestionInformation() {
     unset IFS
 }
 
+function result() {
+    if [ -f $FINAL_RESULT_FILE ]
+    then
+        rm $FINAL_RESULT_FILE
+    fi
+
+cat > $FINAL_RESULT_FILE <<EOF
+<!doctype HTML>
+<html>
+ <head>
+  <title>Shell Quizz Results</title>
+ </head>
+ <body>
+ </body>
+</html>
+EOF
+
+}
+
 # main
 # The main funcion.
 # main
@@ -283,6 +304,8 @@ function main() {
             TOTAL_WRONG=$(( $TOTAL_WRONG + 1 ))
         fi
     done
+
+    result
 
     echo "Total [$TOTAL_QUESTIONS] Correct [$TOTAL_CORRECT] Wrong [$TOTAL_WRONG]"
 }
