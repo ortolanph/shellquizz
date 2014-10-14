@@ -8,6 +8,7 @@
 # 26/09/2014 - Paulo Ortolan - Adding UI
 # 01/10/2014 - Paulo Ortolan - Algorithm for questions
 # 05/10/2014 - Paulo Ortolan - Result screen
+# 13/10/2014 - Paulo Ortolan - Documentation and result screen finished.
 
 # Constants
 # Configuration file
@@ -254,23 +255,56 @@ function retrieveQuestionInformation() {
     unset IFS
 }
 
-function result() {
+# computeResults
+# Creates the result file html page.
+# computeResults
+function computeResults() {
     if [ -f $FINAL_RESULT_FILE ]
     then
         rm $FINAL_RESULT_FILE
     fi
 
 cat > $FINAL_RESULT_FILE <<EOF
-<!doctype HTML>
+<!DOCTYPE html>
 <html>
  <head>
-  <title>Shell Quizz Results</title>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+  <title>Shell Quizz - Results</title>
  </head>
- <body>
+ <body style="font-family: sans">
+  <h1>Shell Quizz</h1>
+  <h2>Results</h2>
+  <p>Congratulations to finish the quizz $QUIZZ_TITLE!</p>
+  <table>
+   <tr style="font-size: 2em">
+    <td style="text-align: center"><strong>Total<br/>Questions</strong></td>
+    <td style="text-align: center"><strong>Correct<br/>Answers</strong></td>
+    <td style="text-align: center"><strong>Wrong<br/>Answers</strong></td>
+   </tr>
+   <tr style="font-size: 4em">
+    <td style="color: navy; text-align: center">$TOTAL_QUESTIONS</td>
+    <td style="color: green; text-align: center">$TOTAL_CORRECT</td>
+    <td style="color: red; text-align: center">$TOTAL_WRONG</td>
+   </tr>
+  </table>
+  <p>Tell <a href="mailto:$QUIZZ_AUTHOR_EMAIL">$QUIZZ_AUTHOR ($QUIZZ_AUTHOR_EMAIL)</a> about your experience. Contribute!</p>
+  <p>Thanks for using shellquiz! Have fun!</p>
  </body>
 </html>
 EOF
 
+}
+
+# showResultsDialog
+# Shows the results file.
+# showResultsDialog
+function showResultsDialog() {
+    zenity --text-info \
+           --title="$DEFAULT_TITLE" \
+           --height=$DEFAULT_HEIGHT \
+           --width=$DEFAULT_WIDTH \
+           --filename=$FINAL_RESULT_FILE \
+           --html
 }
 
 # main
@@ -305,7 +339,6 @@ function main() {
         fi
     done
 
-    result
-
-    echo "Total [$TOTAL_QUESTIONS] Correct [$TOTAL_CORRECT] Wrong [$TOTAL_WRONG]"
+    computeResults
+    showResultsDialog
 }

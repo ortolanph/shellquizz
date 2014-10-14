@@ -1,14 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
  <head>
+  <meta http-equiv="Content-Type" content="text/html" charset=utf-8">
   <title>Shell Quizz - How to</title>
  </head>
- <body>
+ <body style="font-family: sans">
   <h1>Shell Quizz</h1>
   <h2>How to</h2>
-  <p>To create a quizz you need to follow the steps below:</p>
+
+  <p><code>shellquiz</code> is a Zenity based quizz made with shellscript. It supports Zenity version 3.4.0 and bash 4.2.25(1)-release.</p>
+
+  <a name="toc"><h2>Table of Cotents</h2></a>
   <ol>
-   <li>On <code>quizzes</code> folder, create a <code>.quizz</code> empty file</li>
+   <li><a href="#model">Quizz Model</a></li>
+   <li><a href="#quizzfile">Creating the <code>.quizz</code> file</a></li>
+   <li><a href="#aboutfile">Creating the <code>.about</code> file</a></li>
+   <li><a href="#questionsfile">Creating the <code>.questions</code> file</a></li>
+   <li><a href="#installing">Installing</a></li>
+   <li><a href="#skipping">Skipping this screen</a></li>
   </ol>
+
+  <a name="model"><h2>1. Quizz Model</h2></a>
+  <p>The quizzes on this game are consisted in three files:
+   <ul>
+    <li>a quizz file, where there are some configurations and pointers to about file and questions files</li>
+    <li>an about file, that is a html file that will be displayed before the questions</li>
+    <li>a questions file, where there are the questions</li>
+   </ul>
+  </p>
+  <a href="#toc">Table of Contents</a>
+  
+  <a name="quizzfile"><h2>2. Creating the <code>.quizz</code> file</h2></a>
+  <p>The quizz file is just a <code>key-value</code> file. The layout should be:</p>
+  <table>
+   <tr><td><strong>Key</strong></td><td><strong>Meaning</strong></td></tr>
+   <tr><td><code>quizz.title</code></td><td>The title of the quizz</td></tr>
+   <tr><td><code>quizz.author.name</code></td><td>The name of the author of the quizz</td></tr>
+   <tr><td><code>quizz.author.email</code></td><td>The author's email</td></tr>
+   <tr><td><code>quizz.questions</code></td><td>The question file</td></tr>
+   <tr><td><code>quizz.about</code></td><td>The about file</td></tr>
+  </table>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="aboutfile"><h2>3. Creating the <code>.about</code> file</a></h2></a>
+  <p>Just create a simple html file and tell everybody why they should play your quizz!</p>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="questionsfile"><h2>4. Creating the <code>.questions</code> file</h2></a>
+  <p>The <code>.questions</code> file represents a list of the questions that the program will read and show to to user.</p>
+  <p>It contains the questions, a list of five choice and the correct answer, that is one of the choices listed before, like the layout below:</p>
+  <p><code>QUESTION<strong>;</strong>CHOICE_1<strong>;</strong>CHOICE_2<strong>;</strong>CHOICE_3<strong>;</strong>CHOICE_4<strong>;</strong>CHOICE_5<strong>;</strong>ANSWER</code>
+  </p>
+  <p>
+   <strong>WARNING:</strong>
+   Due to a known bug, if the choices or answer contains blank spaces. Replace by underscore. E.g.:<br/>
+   <code>To be or not to be?;That's the question;What is nobler to the soul;True;False;Maybe;That's the question</code><br/>
+   should be<br/>
+   <code>To be or not to be?;That's<strong>_</strong>the<strong>_</strong>question;What<strong>_</strong>is<strong>_</strong>nobler<strong>_</strong>to<strong>_</strong>the<strong>_</strong>soul;True;False;Maybe;That's<strong>_</strong>the<strong>_</strong>question</code><br/>
+  </p>
+  <p>We're making our efforts to accept spaces or to confirm that it's not possible anyway.</p>
+  <a href="#toc">Table of Contents</a>
+
+
+  <a name="installing"><h2>5. Installing</h2></a>
+  <p>Just place the three files into the <code>quizzes</code> folder to start all the fun!</p>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="skipping"><h2>6. Skipping this screen</h2></a>
+  <p>To disable this screen, edit the configuration file <code>shellquizz.conf</code> and modify the variable <code>howto</code> to <code>0</code>.</p>
+  <a href="#toc">Table of Contents</a>
+
+  <p>Thanks for using shellquiz! Have fun!</p>
  </body>
 </html>

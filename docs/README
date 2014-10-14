@@ -1,13 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
  <head>
-  <title>Shell Quizz - Read me</title>
+  <meta http-equiv="Content-Type" content="text/html" charset=utf-8">
+  <title>Shell Quizz - Read Me</title>
  </head>
- <body>
+ <body style="font-family: sans">
   <h1>Shell Quizz</h1>
-  <h2>Readme</h2>
+  <h2>Read Me</h2>
+
+  <p><code>shellquiz</code> is a Zenity based quizz made with shellscript. It supports Zenity version 3.4.0 and bash 4.2.25(1)-release.</p>
+
+  <a name="toc"><h2>Table of Cotents</h2></a>
+  <ol>
+   <li><a href="#about">About</a></li>
+   <li><a href="#developer">Developer Information</a></li>
+   <li><a href="#instructions">Instructions</a></li>
+   <li><a href="#bugs">Known Bugs</a></li>
+   <li><a href="#skipping">Skipping this screen</a></li>
+  </ol>
+
+  <a name="about"><h2>1. About</h2></a>
+  <p><code>shellquiz</code> is a Zenity based quizz made with shellscript. It supports Zenity version 3.4.0 and bash 4.2.25(1)-release.</p>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="developer"><h2>2. Developer Information</h2></a>
+  <p>This project was developed by Paulo Henrique Ortolan (paulo.ortolan <code>at</code> gmail.com). He is a Java developer in Brazil, but he also develops in other languages as Haskell, Scala and Shellscript just for fun.</p>
+  <p>Access his page on <a href="https://github.com/ortolanph">github</a> for more information.</p>
+  <p>He also has <a href="http://javalotofbeans.blogspot.com.br/">a blog about Java</a> that he also uses to other languages as cited before.</p>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="instructions"><h2>3. Instructions</h2></a>
+  <p>To start the fun, first you have to start the main script from a shell as shown below:</p>
+  <code>./shellquizz.sh</code>
+  <p>Sometimes you can have the following error:</p>
+  <code>bash: ./shellquizz.sh: Permission denied</code>
+  <p>There are two ways to allow the execution of the script:</p>
+  <ol>
+    <li>by typing: <code>chmod +x shellquizz.sh</code> on a Terminal window</li>
+   <li>by clicking on the option <strong>Allow executing the file as a program</strong> checkbox on the <strong>Permissions</strong> tab of the properties of the file.</li>
+  </ol>
+  <p><strong>It will not harm your computer anyway. It will just alter the script file to be treated as a program. After doing this is just execute as shown above.</strong></p>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="bugs"><h2>4. Known Bugs</h2></a>
+  <p>These are the bugs that are known to the development team:</p>
+  <ol>
+   <li>Questions should not cointain " ". Use "_" instead.</li>
+  </ol>
+  <a href="#toc">Table of Contents</a>
+
+  <a name="skipping"><h2>5. Skipping this screen</h2></a>
   <p>To disable this screen, edit the configuration file <code>shellquizz.conf</code> and modify the variable <code>readme</code> to <code>0</code>.</p>
-  <p>Press "Cancel" to abort or "OK" to continue.</p>
-  <p><strong>Have fun!</p>
+  <a href="#toc">Table of Contents</a>
+  
+  <p>Thanks for using shellquiz! Have fun!</p>
  </body>
 </html>
