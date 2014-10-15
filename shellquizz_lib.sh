@@ -9,6 +9,7 @@
 # 01/10/2014 - Paulo Ortolan - Algorithm for questions
 # 05/10/2014 - Paulo Ortolan - Result screen
 # 13/10/2014 - Paulo Ortolan - Documentation and result screen finished.
+# 15/10/2014 - Paulo Ortolan - Putting the question title on COLUMN variable of zenity-list dialog
 
 # Constants
 # Configuration file
