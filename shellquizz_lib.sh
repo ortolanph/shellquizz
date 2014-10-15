@@ -37,8 +37,6 @@ README_DOC=$PWD"/docs/README"
 HOWTO_DOC=$PWD"/docs/HOWTO"
 # Select a quizz label
 SELECT_QUIZZ="Select a quizz"
-# Select the correct answer label
-SELECT_QUIZZ="Select the correct answer"
 # Final result file
 FINAL_RESULT_FILE="result.html"
 
@@ -323,10 +321,10 @@ function main() {
         retrieveQuestionInformation "${QUIZZ_QUESTIONS[$q]}"
 
         MY_ANSWER=$( zenity --list \
-                            --title="$QUESTION_TITLE" \
+                            --title="$DEFAULT_TITLE" \
                             --height=$DEFAULT_HEIGHT \
                             --width=$DEFAULT_WIDTH \
-                            --column="$SELECT_CORRECT" \
+                            --column="$QUESTION_TITLE" \
                             $QUESTION_OPTIONS )
 
         checkDialogAction
