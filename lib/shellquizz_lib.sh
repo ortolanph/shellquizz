@@ -10,6 +10,7 @@
 # 05/10/2014 - Paulo Ortolan - Result screen
 # 13/10/2014 - Paulo Ortolan - Documentation and result screen finished.
 # 15/10/2014 - Paulo Ortolan - Putting the question title on COLUMN variable of zenity-list dialog
+# 15/10/2014 - Paulo Ortolan - Moving this file to lib directory to protect library code. Adaptations were made.
 
 # Constants
 # Configuration file
@@ -39,7 +40,7 @@ HOWTO_DOC=$PWD"/docs/HOWTO"
 # Select a quizz label
 SELECT_QUIZZ="Select a quizz"
 # Final result file
-FINAL_RESULT_FILE="result.html"
+FINAL_RESULT_FILE="../result.html"
 
 # Global Variables
 # Quizz file
