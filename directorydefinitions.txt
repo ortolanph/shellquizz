@@ -1,0 +1,10 @@
+/docs              -----> /usr/share/shellquizz/docs
+/lib               -----> /usr/share/shellquizz/lib
+/quizzes           -----> /usr/share/shellquizz/quizzes
+/results           -----> $HOME/.shellquizz/results
+shellquizz.conf    -----> /usr/share/shellquizz
+shellquizz.sh      -----> /usr/share/shellquizz
+
+[ ] Change the results file destination
+[ ] Change the README file
+[ ] Change the HOWTO file
