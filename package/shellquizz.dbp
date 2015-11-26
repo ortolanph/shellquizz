@@ -13,16 +13,16 @@ Description: A quizz created with shellscript and zenity dialog manager.
 <</CTRL>>
 <<FILES>>
 1
-/home/27975700819/docs/workspaces/shellquizz/shellquizz.sh* -> shellquizz.sh -> /usr/bin
-/home/27975700819/docs/workspaces/shellquizz/package/shellquizz.png -> shellquizz.png -> /usr/share/shellquizz/icon
-/home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.quizz -> scifimovies.quizz -> /usr/share/shellquizz/quizzes
-/home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.questions -> scifimovies.questions -> /usr/share/shellquizz/quizzes
-/home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.about -> scifimovies.about -> /usr/share/shellquizz/quizzes
-/home/27975700819/docs/workspaces/shellquizz/lib/shellquizz_lib.sh -> shellquizz_lib.sh -> /usr/share/shellquizz/lib
-/home/27975700819/docs/workspaces/shellquizz/lib/InformationRetriever.awk -> InformationRetriever.awk -> /usr/share/shellquizz/lib
-/home/27975700819/docs/workspaces/shellquizz/shellquizz.conf -> shellquizz.conf -> /usr/share/shellquizz
-/home/27975700819/docs/workspaces/shellquizz/docs/README -> README -> /usr/share/shellquizz/docs
-/home/27975700819/docs/workspaces/shellquizz/docs/HOWTO -> HOWTO -> /usr/share/shellquizz/docs
+/home/ortolanph/projects/shellquizz/package/shellquizz.png -> shellquizz.png -> /usr/share/shellquiz/icon
+/home/ortolanph/projects/shellquizz/docs/README -> README -> /usr/share/shellquiz/docs
+/home/ortolanph/projects/shellquizz/docs/HOWTO -> HOWTO -> /usr/share/shellquiz/docs
+/home/ortolanph/projects/shellquizz/lib/shellquizz_lib.sh -> shellquizz_lib.sh -> /usr/share/shellquiz/lib
+/home/ortolanph/projects/shellquizz/lib/InformationRetriever.awk -> InformationRetriever.awk -> /usr/share/shellquiz/lib
+/home/ortolanph/projects/shellquizz/quizzes/scifimovies.quizz -> scifimovies.quizz -> /usr/share/shellquiz/quizzes
+/home/ortolanph/projects/shellquizz/quizzes/scifimovies.questions -> scifimovies.questions -> /usr/share/shellquiz/quizzes
+/home/ortolanph/projects/shellquizz/quizzes/scifimovies.about -> scifimovies.about -> /usr/share/shellquiz/quizzes
+/home/ortolanph/projects/shellquizz/shellquizz.conf -> shellquizz.conf -> /usr/share/shellquiz
+/home/ortolanph/projects/shellquizz/shellquizz.sh* -> shellquizz.sh -> /usr/bin
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
@@ -65,7 +65,7 @@ shellquizz (1.0) ; urgency=low
 1
 Name=shellquizz
 Version=1.0
-Exec=./usr/share/shellquizz/shellquizz.sh
+Exec=/usr/bin/shellquizz.sh
 Comment=A shell based quizz game using Zenity
 Icon=/usr/share/shellquizz/icon/shellquiz.png
 Type=Application
