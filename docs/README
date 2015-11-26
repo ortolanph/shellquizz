@@ -30,16 +30,11 @@
   <a href="#toc">Table of Contents</a>
 
   <a name="instructions"><h2>3. Instructions</h2></a>
-  <p>To start the fun, first you have to start the main script from a shell as shown below:</p>
-  <code>./shellquizz.sh</code>
-  <p>Sometimes you can have the following error:</p>
-  <code>bash: ./shellquizz.sh: Permission denied</code>
-  <p>There are two ways to allow the execution of the script:</p>
-  <ol>
-    <li>by typing: <code>chmod +x shellquizz.sh</code> on a Terminal window</li>
-   <li>by clicking on the option <strong>Allow executing the file as a program</strong> checkbox on the <strong>Permissions</strong> tab of the properties of the file.</li>
-  </ol>
-  <p><strong>It will not harm your computer anyway. It will just alter the script file to be treated as a program. After doing this is just execute as shown above.</strong></p>
+  <p>To start the fun, first you have to install the package in your Ubuntu-like Linux system and search for <code>shellquizz</code> menu item.</p>
+  <p>If you are an advanced linux user, you can start it running from a Terminal window and type:</p>
+  <code>/usr/lib/shellquizz.sh</code>
+  <p>The file already have the executable bit, just to prevent from the following error:</p>
+  <code>bash: /usr/lib/shellquizz.sh: Permission denied</code>
   <a href="#toc">Table of Contents</a>
 
   <a name="bugs"><h2>4. Known Bugs</h2></a>
@@ -50,7 +45,7 @@
   <a href="#toc">Table of Contents</a>
 
   <a name="skipping"><h2>5. Skipping this screen</h2></a>
-  <p>To disable this screen, edit the configuration file <code>shellquizz.conf</code> and modify the variable <code>readme</code> to <code>0</code>.</p>
+  <p>To disable this screen, edit the configuration file <code>/usr/share/shellquizz/shellquizz.conf</code> and modify the variable <code>readme</code> to <code>0</code>.</p>
   <a href="#toc">Table of Contents</a>
   
   <p>Thanks for using shellquiz! Have fun!</p>

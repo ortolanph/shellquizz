@@ -18,20 +18,15 @@ He also has [a blog about Java](http://javalotofbeans.blogspot.com.br/) that he 
 
 **3. Instructions**
 
-To start the fun, first you have to start the main script from a shell as shown below:
+To start the fun, first you have to install the package in your Ubuntu-like Linux system and search for `shellquizz` menu item.
 
-`./shellquizz.sh`
+If you are an advanced linux user, you can start it running from a Terminal window and type:
 
-Sometimes you can have the following error:
+`/usr/bin/shellquizz`
+
+The file already have the executable bit, just to prevent from the following error:
 
 `bash: ./shellquizz.sh: Permission denied`
-
-There are two ways to allow the execution of the script
-
-   1. by typing: `chmod +x shellquizz.sh` on a Terminal window
-   2. by clicking on the option **Allow executing the file as a program** checkbox on the **Permissions** tab of the properties of the file.
-
-**It will not harm your computer anyway. It will just alter the script file to be treated as a program. After doing this is just execute as shown above.**
 
 **4. Known Bugs**
 

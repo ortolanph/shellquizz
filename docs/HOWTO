@@ -63,7 +63,8 @@
 
 
   <a name="installing"><h2>5. Installing</h2></a>
-  <p>Just place the three files into the <code>quizzes</code> folder to start all the fun!</p>
+  <p>Just place the three files into the <code>/usr/share/shellquizz/quizzes</code> folder to start all the fun!</p>
+  <p><strong>IMPORTANT:</strong>You must have admin rights to install a new quizz. I'm researching to make it easier to users to install new quizzes. Someday I will put this on <code>$HOME/.shellquizz/quizzes</code> folder, just to you create your own quizz.</p>
   <a href="#toc">Table of Contents</a>
 
   <a name="skipping"><h2>6. Skipping this screen</h2></a>
