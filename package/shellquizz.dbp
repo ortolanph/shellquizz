@@ -13,16 +13,16 @@ Description: A quizz created with shellscript and zenity dialog manager.
 <</CTRL>>
 <<FILES>>
 1
-/home/ortolanph/projects/shellquizz/package/shellquizz.png -> shellquizz.png -> /usr/share/shellquiz/icon
-/home/ortolanph/projects/shellquizz/docs/README -> README -> /usr/share/shellquiz/docs
-/home/ortolanph/projects/shellquizz/docs/HOWTO -> HOWTO -> /usr/share/shellquiz/docs
-/home/ortolanph/projects/shellquizz/lib/shellquizz_lib.sh -> shellquizz_lib.sh -> /usr/share/shellquiz/lib
-/home/ortolanph/projects/shellquizz/lib/InformationRetriever.awk -> InformationRetriever.awk -> /usr/share/shellquiz/lib
-/home/ortolanph/projects/shellquizz/quizzes/scifimovies.quizz -> scifimovies.quizz -> /usr/share/shellquiz/quizzes
-/home/ortolanph/projects/shellquizz/quizzes/scifimovies.questions -> scifimovies.questions -> /usr/share/shellquiz/quizzes
-/home/ortolanph/projects/shellquizz/quizzes/scifimovies.about -> scifimovies.about -> /usr/share/shellquiz/quizzes
-/home/ortolanph/projects/shellquizz/shellquizz.conf -> shellquizz.conf -> /usr/share/shellquiz
-/home/ortolanph/projects/shellquizz/shellquizz.sh* -> shellquizz.sh -> /usr/bin
+/home/27975700819/docs/workspaces/shellquizz/package/shellquizz.svg -> shellquizz.svg -> /usr/share/shellquizz/icon
+/home/27975700819/docs/workspaces/shellquizz/docs/README -> README -> /usr/share/shellquizz/docs
+/home/27975700819/docs/workspaces/shellquizz/docs/HOWTO -> HOWTO -> /usr/share/shellquizz/docs
+/home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.quizz -> scifimovies.quizz -> /usr/share/shellquizz/quizzes
+/home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.questions -> scifimovies.questions -> /usr/share/shellquizz/quizzes
+/home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.about -> scifimovies.about -> /usr/share/shellquizz/quizzes
+/home/27975700819/docs/workspaces/shellquizz/lib/shellquizz_lib.sh -> shellquizz_lib.sh -> /usr/share/shellquizz/lib
+/home/27975700819/docs/workspaces/shellquizz/lib/InformationRetriever.awk -> InformationRetriever.awk -> /usr/share/shellquizz/lib
+/home/27975700819/docs/workspaces/shellquizz/shellquizz.conf -> shellquizz.conf -> /usr/share/shellquizz
+/home/27975700819/docs/workspaces/shellquizz/shellquizz* -> shellquizz -> /usr/bin
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
@@ -34,7 +34,7 @@ Description: A quizz created with shellscript and zenity dialog manager.
 
 # Change the permission to execute the main routin
 echo "Permission to the main program"
-chmod +x /usr/share/shellquizz/shellquizz.sh
+chmod +x /usr/bin/shellquizz
 
 # Change the permission to execute the lib routine
 echo "Permission to the library"
@@ -49,25 +49,44 @@ chmod +x /usr/share/shellquizz/lib/shellquizz_lib.sh
 <</SCRIPTS>>
 <<CHANGELOG>>
 <<DEST>>DEFAULT<</DEST>>
-shellquizz (1.0) ; urgency=low
+shellquizz (1.0) 1; urgency=low
 
-  * First Version
+  * First version packaged as .deb
 
- -- Paulo Henrique Ortolan <paulo.ortolan@gmail.com>  Wed, 25 Nov 2015 11:53:55 -0200
-
+ -- Paulo Henrique Ortolan <paulo.ortolan@gmail.com>  Thu, 26 Nov 2015 10:18:33 -0200
 
 
 <</CHANGELOG>>
 <<COPYRIGHT>>
- 
+The MIT License (MIT)
+
+Copyright (c) 2014-2015 shellquizz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 <</COPYRIGHT>>
 <<MENU>>
 1
 Name=shellquizz
 Version=1.0
-Exec=/usr/bin/shellquizz.sh
+Exec=/usr/bin/shellquizz
 Comment=A shell based quizz game using Zenity
-Icon=/usr/share/shellquizz/icon/shellquiz.png
+Icon=/usr/share/shellquizz/icon/shellquiz.svg
 Type=Application
 Terminal=false
 StartupNotify=true

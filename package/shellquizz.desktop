@@ -1,8 +1,8 @@
 Name=shellquizz
 Version=1.0
-Exec=/usr/bin/shellquizz.sh
+Exec=/usr/bin/shellquizz
 Comment=A shell based quizz game using Zenity
-Icon=/usr/share/shellquizz/icon/shellquiz.png
+Icon=/usr/share/shellquizz/icon/shellquiz.svg
 Type=Application
 Terminal=false
 StartupNotify=true

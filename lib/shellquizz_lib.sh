@@ -11,12 +11,15 @@
 # 13/10/2014 - Paulo Ortolan - Documentation and result screen finished.
 # 15/10/2014 - Paulo Ortolan - Putting the question title on COLUMN variable of zenity-list dialog
 # 15/10/2014 - Paulo Ortolan - Moving this file to lib directory to protect library code. Adaptations were made.
+# 26/11/2015 - Paulo Ortolan - Directory changes due decision to make a .deb file
 
 # Constants
+# Shellquizz base directory
+SHELLQUIZZ_BASE_DIR="/usr/share/shellquizz"
 # Configuration file
-SHELLQUIZZ_CONF="shellquizz.conf"
+SHELLQUIZZ_CONF=$SHELLQUIZZ_BASE_DIR"/shellquizz.conf"
 # Quizzes directory
-QUIZZ_DIR=$PWD"/quizzes"
+QUIZZ_DIR=$SHELLQUIZZ_BASE_DIR"/quizzes"
 # Header for quizz title
 H_QUIZZ_TITLE="quizz.title"
 # Header for quizz author name
@@ -34,13 +37,15 @@ DEFAULT_WIDTH=800
 # The default title
 DEFAULT_TITLE="Shell Quizz"
 # The readme document
-README_DOC=$PWD"/docs/README"
+README_DOC=$SHELLQUIZZ_BASE_DIR"/docs/README"
 # The howto document
-HOWTO_DOC=$PWD"/docs/HOWTO"
+HOWTO_DOC=$SHELLQUIZZ_BASE_DIR"/docs/HOWTO"
 # Select a quizz label
 SELECT_QUIZZ="Select a quizz"
+# Results folder
+RESULT_FOLDER="$HOME/.shellquizz/"
 # Final result file
-FINAL_RESULT_FILE="../result.html"
+FINAL_RESULT_FILE=$RESULT_FOLDER"result.html"
 
 # Global Variables
 # Quizz file
@@ -76,7 +81,7 @@ TOTAL_WRONG=0
 # Retrieves an information on the configuration (shellquizz.conf) file.
 # retrieveInformation FILE KEY_NAME
 function retrieveInformation() {
-    echo $(awk -f lib/InformationRetriever.awk < $1 -v key=$2)
+    echo $(awk -f $SHELLQUIZZ_BASE_DIR/lib/InformationRetriever.awk < $1 -v key=$2)
 }
 
 # checkDialogAction
@@ -259,6 +264,11 @@ function retrieveQuestionInformation() {
 # Creates the result file html page.
 # computeResults
 function computeResults() {
+	if [ ! -d $RESULT_FOLDER ]
+	then
+		mkdir -p $RESULT_FOLDER
+	fi
+	
     if [ -f $FINAL_RESULT_FILE ]
     then
         rm $FINAL_RESULT_FILE
