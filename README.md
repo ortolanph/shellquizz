@@ -34,8 +34,5 @@ These are the bugs that are known to the development team:
 
    1. Questions should not cointain " ". Use "_" instead.
 
-**5. Skipping this screen**
-
-To disable this screen, edit the configuration file `shellquizz.conf` and modify the variable `readme` to `0`.
 
 Thanks for using shellquiz! Have fun!

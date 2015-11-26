@@ -12,6 +12,7 @@
 # 15/10/2014 - Paulo Ortolan - Putting the question title on COLUMN variable of zenity-list dialog
 # 15/10/2014 - Paulo Ortolan - Moving this file to lib directory to protect library code. Adaptations were made.
 # 26/11/2015 - Paulo Ortolan - Directory changes due decision to make a .deb file
+# 26/11/2015 - Paulo Ortolan - Added setup function, that creates shellquiz folder hidden in $HOME.
 
 # Constants
 # Shellquizz base directory
@@ -19,7 +20,7 @@ SHELLQUIZZ_BASE_DIR="/usr/share/shellquizz"
 # Configuration file
 SHELLQUIZZ_CONF=$SHELLQUIZZ_BASE_DIR"/shellquizz.conf"
 # Quizzes directory
-QUIZZ_DIR=$SHELLQUIZZ_BASE_DIR"/quizzes"
+ORIGINAL_QUIZZ_DIR=$SHELLQUIZZ_BASE_DIR"/quizzes"
 # Header for quizz title
 H_QUIZZ_TITLE="quizz.title"
 # Header for quizz author name
@@ -42,10 +43,14 @@ README_DOC=$SHELLQUIZZ_BASE_DIR"/docs/README"
 HOWTO_DOC=$SHELLQUIZZ_BASE_DIR"/docs/HOWTO"
 # Select a quizz label
 SELECT_QUIZZ="Select a quizz"
+# Shellquizz $HOME folder
+SHELLQUIZ_HOME_FOLDER=$HOME"/.shellquizz"
 # Results folder
-RESULT_FOLDER="$HOME/.shellquizz/"
+RESULT_FOLDER=$SHELLQUIZ_HOME_FOLDER"/result"
+# Quizzes directory
+QUIZZ_DIR=$SHELLQUIZ_HOME_FOLDER"/quizzes"
 # Final result file
-FINAL_RESULT_FILE=$RESULT_FOLDER"result.html"
+FINAL_RESULT_FILE=$RESULT_FOLDER"/result.html"
 
 # Global Variables
 # Quizz file
@@ -76,6 +81,36 @@ TOTAL_CORRECT=0
 TOTAL_WRONG=0
 
 # Functions
+
+# setup
+# create shellquiz directory to store results file, default quiz and user quizzes
+# setup
+function setup() {
+	# Checks if there's no $HOME/.shellquizz and creates it
+	if [ ! -d $SHELLQUIZ_HOME_FOLDER ]
+	then
+		mkdir -p $SHELLQUIZ_HOME_FOLDER
+	fi
+	
+	# Checks if there's no $HOME/.shellquizz/result and creates it
+	if [ ! -d $RESULT_FOLDER ]
+	then
+		mkdir -p $RESULT_FOLDER
+	fi
+	
+	# Checks if there's no $HOME/.shellquizz/quizzes and creates it
+	if [ ! -d $QUIZZ_FOLDER ]
+	then
+		mkdir -p $QUIZZ_FOLDER
+	fi
+	
+	# Copies the quizzes to created folder
+	if [ ! "$(ls -A $QUIZZ_DIR)" ]
+    then
+        cp $ORIGINAL_QUIZZ_DIR/* $QUIZZ_DIR/.
+    fi
+	
+}
 
 # retrieveInformation
 # Retrieves an information on the configuration (shellquizz.conf) file.
@@ -264,11 +299,6 @@ function retrieveQuestionInformation() {
 # Creates the result file html page.
 # computeResults
 function computeResults() {
-	if [ ! -d $RESULT_FOLDER ]
-	then
-		mkdir -p $RESULT_FOLDER
-	fi
-	
     if [ -f $FINAL_RESULT_FILE ]
     then
         rm $FINAL_RESULT_FILE
@@ -321,6 +351,7 @@ function showResultsDialog() {
 # The main funcion.
 # main
 function main() {
+	setup
     showReadmeDialog
     showHowtoDialog
     retrieveQuizzInformations $( selectQuizz )
