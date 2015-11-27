@@ -13,7 +13,7 @@ Description: A quizz created with shellscript and zenity dialog manager.
 <</CTRL>>
 <<FILES>>
 1
-/home/27975700819/docs/workspaces/shellquizz/package/shellquizz.svg -> shellquizz.svg -> /usr/share/shellquizz/icon
+/home/27975700819/docs/workspaces/shellquizz/package/shellquizz.png -> shellquizz.png -> /usr/share/shellquizz/icon
 /home/27975700819/docs/workspaces/shellquizz/docs/README -> README -> /usr/share/shellquizz/docs
 /home/27975700819/docs/workspaces/shellquizz/docs/HOWTO -> HOWTO -> /usr/share/shellquizz/docs
 /home/27975700819/docs/workspaces/shellquizz/quizzes/scifimovies.quizz -> scifimovies.quizz -> /usr/share/shellquizz/quizzes
@@ -33,11 +33,9 @@ Description: A quizz created with shellscript and zenity dialog manager.
 #!/bin/sh
 
 # Change the permission to execute the main routin
-echo "Permission to the main program"
 chmod +x /usr/bin/shellquizz
 
 # Change the permission to execute the lib routine
-echo "Permission to the library"
 chmod +x /usr/share/shellquizz/lib/shellquizz_lib.sh
 <</POSTINST>>
 <<PRERM>>

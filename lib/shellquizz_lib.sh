@@ -20,7 +20,7 @@ SHELLQUIZZ_BASE_DIR="/usr/share/shellquizz"
 # Configuration file
 SHELLQUIZZ_CONF=$SHELLQUIZZ_BASE_DIR"/shellquizz.conf"
 # Quizzes directory
-ORIGINAL_QUIZZ_DIR=$SHELLQUIZZ_BASE_DIR"/quizzes"
+ORIGINAL_QUIZZ_FOLDER=$SHELLQUIZZ_BASE_DIR"/quizzes"
 # Header for quizz title
 H_QUIZZ_TITLE="quizz.title"
 # Header for quizz author name
@@ -48,13 +48,13 @@ SHELLQUIZ_HOME_FOLDER=$HOME"/.shellquizz"
 # Results folder
 RESULT_FOLDER=$SHELLQUIZ_HOME_FOLDER"/result"
 # Quizzes directory
-QUIZZ_DIR=$SHELLQUIZ_HOME_FOLDER"/quizzes"
+QUIZZ_FOLDER=$SHELLQUIZ_HOME_FOLDER"/quizzes"
 # Final result file
 FINAL_RESULT_FILE=$RESULT_FOLDER"/result.html"
 
 # Global Variables
 # Quizz file
-QUIZZ_FILE="$QUIZZ_DIR/"
+QUIZZ_FILE="$QUIZZ_FOLDER/"
 # Quizz title to be displayed on dialog titles
 QUIZZ_TITLE=""
 # Quizz author to be displayed on about screen
@@ -62,9 +62,9 @@ QUIZZ_AUTHOR=""
 # Quizz author e-mail to be displayed on about screen
 QUIZZ_AUTHOR_EMAIL=""
 # Quizz about file
-QUIZZ_ABOUT=$QUIZZ_DIR"/"
+QUIZZ_ABOUT=$QUIZZ_FOLDER"/"
 # Quizz question file
-QUIZZ_QUESTION=$QUIZZ_DIR"/"
+QUIZZ_QUESTION=$QUIZZ_FOLDER"/"
 # Questions
 QUIZZ_QUESTIONS=()
 # The question title
@@ -90,24 +90,29 @@ function setup() {
 	if [ ! -d $SHELLQUIZ_HOME_FOLDER ]
 	then
 		mkdir -p $SHELLQUIZ_HOME_FOLDER
+		echo "Folder $SHELLQUIZ_HOME_FOLDER created" > $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
 	fi
 	
 	# Checks if there's no $HOME/.shellquizz/result and creates it
 	if [ ! -d $RESULT_FOLDER ]
 	then
 		mkdir -p $RESULT_FOLDER
+		echo "Folder $RESULT_FOLDER created" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
 	fi
 	
 	# Checks if there's no $HOME/.shellquizz/quizzes and creates it
 	if [ ! -d $QUIZZ_FOLDER ]
 	then
 		mkdir -p $QUIZZ_FOLDER
+		echo "Folder $QUIZZ_FOLDER created" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
 	fi
 	
 	# Copies the quizzes to created folder
-	if [ ! "$(ls -A $QUIZZ_DIR)" ]
+	if [ ! "$( ls -A $QUIZZ_FOLDER )" ]
     then
-        cp $ORIGINAL_QUIZZ_DIR/* $QUIZZ_DIR/.
+		echo "Copying $ORIGINAL_QUIZZ_FOLDER files to folder $QUIZZ_FOLDER" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+        cp $ORIGINAL_QUIZZ_FOLDER/* $QUIZZ_FOLDER/.
+        echo "Files copied to folder $QUIZZ_FOLDER" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
     fi
 	
 }
@@ -196,7 +201,7 @@ function showAboutDialog() {
 function listAllQuizzes() {
    QUIZZES=""
 
-   for QUIZZ in $(ls $QUIZZ_DIR | grep ".quizz")
+   for QUIZZ in $(ls $QUIZZ_FOLDER | grep ".quizz")
    do
       QUIZZES=$QUIZZES$QUIZZ" "
    done
@@ -224,7 +229,7 @@ function selectQuizz() {
 # Get all informations about the Quizz and store  on global variables.
 # retrieveQuizzInformations QUIZZ_FILE_NAME
 function retrieveQuizzInformations() {
-    QUIZZ_FILE=$QUIZZ_DIR"/"$1
+    QUIZZ_FILE=$QUIZZ_FOLDER"/"$1
 
     if [ -z $1 ]
     then
@@ -234,8 +239,8 @@ function retrieveQuizzInformations() {
     QUIZZ_TITLE=$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_TITLE )
     QUIZZ_AUTHOR=$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_AUTHOR )
     QUIZZ_AUTHOR_EMAIL=$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_AUTHOR_EMAIL )
-    QUIZZ_ABOUT=$QUIZZ_DIR"/"$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_ABOUT )
-    QUIZZ_QUESTION=$QUIZZ_DIR"/"$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_QUESTION )
+    QUIZZ_ABOUT=$QUIZZ_FOLDER"/"$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_ABOUT )
+    QUIZZ_QUESTION=$QUIZZ_FOLDER"/"$( retrieveInformation $QUIZZ_FILE $H_QUIZZ_QUESTION )
 }
 
 # retrieveQuestions
