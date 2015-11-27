@@ -67,7 +67,7 @@
   <a href="#toc">Table of Contents</a>
 
   <a name="skipping"><h2>6. Skipping this screen</h2></a>
-  <p>To disable this screen, edit the configuration file <code>shellquizz.conf</code> and modify the variable <code>howto</code> to <code>0</code>.</p>
+  <p>To disable this screen, edit the configuration file <code>$HOME/.shellquizz/shellquizz.conf</code> and modify the variable <code>howto</code> to <code>0</code>.</p>
   <a href="#toc">Table of Contents</a>
 
   <p>Thanks for using shellquiz! Have fun!</p>

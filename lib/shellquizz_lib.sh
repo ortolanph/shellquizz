@@ -4,7 +4,7 @@
 # History
 # 23/09/2014 - Paulo Ortolan - Script creation
 # 23/09/2014 - Paulo Ortolan - Adding more functions
-# 24/09/2014 - Paulo Ortolan - New algorithm for retriving question informations
+# 24/09/2014 - Paulo Ortolan - New algorithm for retrieving question informations
 # 26/09/2014 - Paulo Ortolan - Adding UI
 # 01/10/2014 - Paulo Ortolan - Algorithm for questions
 # 05/10/2014 - Paulo Ortolan - Result screen
@@ -13,12 +13,13 @@
 # 15/10/2014 - Paulo Ortolan - Moving this file to lib directory to protect library code. Adaptations were made.
 # 26/11/2015 - Paulo Ortolan - Directory changes due decision to make a .deb file
 # 26/11/2015 - Paulo Ortolan - Added setup function, that creates shellquiz folder hidden in $HOME.
+# 27/11/2015 - Paulo Ortolan - Added copy to configuration file and logMessage function
 
 # Constants
+# Version
+VERSION="1.1"
 # Shellquizz base directory
 SHELLQUIZZ_BASE_DIR="/usr/share/shellquizz"
-# Configuration file
-SHELLQUIZZ_CONF=$SHELLQUIZZ_BASE_DIR"/shellquizz.conf"
 # Quizzes directory
 ORIGINAL_QUIZZ_FOLDER=$SHELLQUIZZ_BASE_DIR"/quizzes"
 # Header for quizz title
@@ -51,6 +52,8 @@ RESULT_FOLDER=$SHELLQUIZ_HOME_FOLDER"/result"
 QUIZZ_FOLDER=$SHELLQUIZ_HOME_FOLDER"/quizzes"
 # Final result file
 FINAL_RESULT_FILE=$RESULT_FOLDER"/result.html"
+# Configuration file
+SHELLQUIZZ_CONF=$SHELLQUIZ_HOME_FOLDER"/shellquizz.conf"
 
 # Global Variables
 # Quizz file
@@ -82,37 +85,61 @@ TOTAL_WRONG=0
 
 # Functions
 
+# logMessage
+# Appends a message into $SHELLQUIZ_HOME_FOLDER/shellquizz.log message
+# logMessage <message>
+function logMessage() {
+	LOG_FILE=$SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+	MESSAGE=$1
+	
+	if [ ! -f $LOG_FILE ]
+	then
+		echo "[shellquizz] Shellquizz $VERSION log" > $LOG_FILE
+	fi
+	
+	echo "[shellquizz] $MESSAGE" >> $LOG_FILE
+}
+
 # setup
-# create shellquiz directory to store results file, default quiz and user quizzes
+# Creates shellquiz directory to store results file, default quiz and user quizzes
 # setup
 function setup() {
 	# Checks if there's no $HOME/.shellquizz and creates it
 	if [ ! -d $SHELLQUIZ_HOME_FOLDER ]
 	then
 		mkdir -p $SHELLQUIZ_HOME_FOLDER
-		echo "Folder $SHELLQUIZ_HOME_FOLDER created" > $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+		logMessage "Folder $SHELLQUIZ_HOME_FOLDER created"
 	fi
 	
 	# Checks if there's no $HOME/.shellquizz/result and creates it
 	if [ ! -d $RESULT_FOLDER ]
 	then
 		mkdir -p $RESULT_FOLDER
-		echo "Folder $RESULT_FOLDER created" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+		logMessage "Folder $RESULT_FOLDER created"
 	fi
 	
 	# Checks if there's no $HOME/.shellquizz/quizzes and creates it
 	if [ ! -d $QUIZZ_FOLDER ]
 	then
 		mkdir -p $QUIZZ_FOLDER
-		echo "Folder $QUIZZ_FOLDER created" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+		logMessage "Folder $QUIZZ_FOLDER created"
 	fi
+	
+	# Checks if there's shellquizz.conf file on $HOME/.shellquizz/ and copies it if don't
+	CONFIGURATION_FILE=$SHELLQUIZ_HOME_FOLDER"/shellquizz.conf"
+    if [ ! -f $CONFIGURATION_FILE ]
+    then
+		logMessage "Copying $SHELLQUIZZ_BASE_DIR/shellquizz.conf file to $SHELLQUIZ_HOME_FOLDER"
+        cp $SHELLQUIZZ_BASE_DIR"/shellquizz.conf" $CONFIGURATION_FILE
+        logMessage "Files copied to $CONFIGURATION_FILE"
+    fi	
 	
 	# Copies the quizzes to created folder
 	if [ ! "$( ls -A $QUIZZ_FOLDER )" ]
     then
-		echo "Copying $ORIGINAL_QUIZZ_FOLDER files to folder $QUIZZ_FOLDER" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+		logMessage "Copying $ORIGINAL_QUIZZ_FOLDER files to folder $QUIZZ_FOLDER"
         cp $ORIGINAL_QUIZZ_FOLDER/* $QUIZZ_FOLDER/.
-        echo "Files copied to folder $QUIZZ_FOLDER" >> $SHELLQUIZ_HOME_FOLDER"/shellquizz.log"
+        logMessage "Files copied to folder $QUIZZ_FOLDER"
     fi
 	
 }
