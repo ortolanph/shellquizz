@@ -1,7 +1,0 @@
-W: shellquizz: description-synopsis-starts-with-article
-E: shellquizz: package-section-games-but-contains-no-game
-W: shellquizz: binary-without-manpage usr/bin/shellquizz
-W: shellquizz: script-not-executable usr/share/shellquizz/lib/InformationRetriever.awk
-E: shellquizz: wrong-path-for-interpreter usr/share/shellquizz/lib/InformationRetriever.awk (#!/bin/awk != /usr/bin/awk)
-W: shellquizz: script-not-executable usr/share/shellquizz/lib/shellquizz_lib.sh
-W: shellquizz: maintainer-script-ignores-errors postinst
