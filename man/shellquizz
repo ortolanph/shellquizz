@@ -1,0 +1,17 @@
+.\" Manpage for shellquizz.
+.\" Contact paulo.ortolan@gmail.com to correct errors or typos.
+.TH man 8 "17 Feb 2017" "1.0" "shellquizz man page"
+.SH NAME
+shellquizz \- a simple quizz game and a lot of fun 
+.SH SYNOPSIS
+shellquizz
+.SH DESCRIPTION
+shellquizz is a simple quizz game
+.SH OPTIONS
+No options at all.
+.SH SEE ALSO
+There's nothing else to see.
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Paulo Ortolan
